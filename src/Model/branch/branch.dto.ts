@@ -27,9 +27,3 @@ export class CreateBranchDto {
   };
   isShow: boolean;
 }
-
-export class UpdateBranchDto {
-  id: string;
-  title?: string;
-  price?: number;
-}
