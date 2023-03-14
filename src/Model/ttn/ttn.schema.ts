@@ -5,7 +5,7 @@ export type TTNDocument = HydratedDocument<TTN>;
 
 @Schema()
 export class TTN {
-  @Prop()
+  @Prop({ unique: true })
   id: string;
 
   @Prop()

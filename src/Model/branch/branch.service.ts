@@ -77,7 +77,7 @@ export class BranchService {
           isShow,
         };
 
-        this.create(createdBranch);
+        if (isShow) this.create(createdBranch);
         branchList.push(createdBranch);
       });
     }

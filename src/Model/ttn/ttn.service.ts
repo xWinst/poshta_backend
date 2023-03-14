@@ -11,7 +11,7 @@ const finalStatuses = ['9', ' 10', '11', '102', '103', '105', '106'];
 export class TTNService {
   constructor(@InjectModel(TTN.name) private TTNModel: Model<TTNDocument>) {}
 
-  async getById(id: string): Promise<TTNDocument | string | CreateTTNDto> {
+  async getById(id: string): Promise<TTNDocument | CreateTTNDto> {
     const ttn = await this.TTNModel.findOne({ id });
 
     if (!ttn || !finalStatuses.includes(ttn.status)) {
@@ -25,7 +25,7 @@ export class TTNService {
       });
 
       if (data.data[0].StatusCode === '3') {
-        return `ТТН за номером ${id} не знайдено`;
+        return null;
       }
 
       const newTTN = this.createTTNDto(data.data[0]);
