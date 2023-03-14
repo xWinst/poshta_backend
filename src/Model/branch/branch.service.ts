@@ -13,7 +13,7 @@ export class BranchService {
     @InjectModel(Branch.name) private branchModel: Model<BranchDocument>,
   ) {}
 
-  async getAllByCity(method) {
+  async getAllByCity(method): Promise<BranchDocument[] | CreateBranchDto[]> {
     const { CityName } = method;
     const list = await this.branchModel.find({ city: CityName }).exec();
 
