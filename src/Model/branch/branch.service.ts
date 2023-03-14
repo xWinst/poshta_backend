@@ -25,14 +25,14 @@ export class BranchService {
     return list;
   }
 
-  async getById(id: string) {
+  async getById(id: string): Promise<BranchDocument[] | CreateBranchDto[]> {
     const branch = await this.branchModel.findOne({ id }).exec();
     if (!branch) {
       const data = await this.getData({ Ref: id });
       return this.saveBranchesToDatabase(data, false);
     }
 
-    return branch;
+    return [branch];
   }
 
   async getData(methodProperties: { CityName?: string; Ref?: string }) {
@@ -76,6 +76,7 @@ export class BranchService {
           schedule: branch.Schedule,
           isShow,
         };
+
         this.create(createdBranch);
         branchList.push(createdBranch);
       });

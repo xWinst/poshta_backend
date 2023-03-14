@@ -5,7 +5,7 @@ export type BranchDocument = HydratedDocument<Branch>;
 
 @Schema()
 export class Branch {
-  @Prop()
+  @Prop({ unique: true })
   id: string;
 
   @Prop()
