@@ -1,21 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  Post,
-  Req,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, Param, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { BranchService } from 'Model/branch/branch.service';
-import { CreateBranchDto } from 'Model/branch/branch.dto';
 
 @Controller('branch')
 export class BranchController {
   constructor(private branchService: BranchService) {}
+
   @Get()
   async getAllByCity(@Req() req: Request, @Res() res: Response) {
     const result = await this.branchService.getAllByCity(req.query);

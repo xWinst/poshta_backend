@@ -1,33 +1,14 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Controller, Get, Param, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { TTNService } from 'Model/ttn/ttn.service';
-import { CreateTTNDto, UpdateTTNDto } from 'Model/ttn/ttn.dto';
 
 @Controller('ttn')
 export class TTNController {
   constructor(private ttnService: TTNService) {}
 
   @Get(':id')
-  getById(@Param('id') id: string) {
-    return this.ttnService.getById(id);
-  }
-
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  create(@Body() createTTNDto: CreateTTNDto) {
-    return this.ttnService.create(createTTNDto);
-  }
-
-  @Patch()
-  update(@Body() updateTTNDto: UpdateTTNDto, @Param('id') id: string) {
-    return this.ttnService.update(id, updateTTNDto);
+  async getById(@Param('id') id: string, @Res() res: Response) {
+    const result = await this.ttnService.getById(id);
+    return res.send(result);
   }
 }
