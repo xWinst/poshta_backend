@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BranchController } from 'Controller/branch.controller';
-import { BranchService } from 'View/branch.service';
+import { BranchService } from 'Model/branch/branch.service';
 import { Branch, BranchSchema } from './branch.schema';
 
 @Module({

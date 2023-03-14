@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TTNController } from 'Controller/ttn.controller';
-import { TTNService } from 'View/ttn.service';
+import { TTNService } from 'Model/ttn/ttn.service';
 import { TTN, TTNSchema } from './ttn.schema';
 
 @Module({

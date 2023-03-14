@@ -8,7 +8,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { TTNService } from 'View/ttn.service';
+import { TTNService } from 'Model/ttn/ttn.service';
 import { CreateTTNDto, UpdateTTNDto } from 'Model/ttn/ttn.dto';
 
 @Controller('ttn')

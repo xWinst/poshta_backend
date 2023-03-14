@@ -6,26 +6,25 @@ import {
   HttpStatus,
   Param,
   Post,
+  Req,
+  Res,
 } from '@nestjs/common';
-import { BranchService } from 'View/branch.service';
+import { Request, Response } from 'express';
+import { BranchService } from 'Model/branch/branch.service';
 import { CreateBranchDto } from 'Model/branch/branch.dto';
 
 @Controller('branch')
 export class BranchController {
   constructor(private branchService: BranchService) {}
   @Get()
-  getAll() {
-    return this.branchService.getAll();
+  async getAllByCity(@Req() req: Request, @Res() res: Response) {
+    const result = await this.branchService.getAllByCity(req.query);
+    return res.send(result);
   }
 
   @Get(':id')
-  getById(@Param('id') id: string) {
-    return this.branchService.getById(id);
-  }
-
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  create(@Body() createBranchDto: CreateBranchDto) {
-    return this.branchService.create(createBranchDto);
+  async getById(@Param('id') id: string, @Res() res: Response) {
+    const result = await this.branchService.getById(id);
+    return res.send(result);
   }
 }
